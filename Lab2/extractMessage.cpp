@@ -19,6 +19,20 @@ string extractMessage(const bmp & image) {
 	// just doing
 	// pixel * p = image(x, y);
 	// would give a compilation error
+	int width = image.width();
+	int height  = image.height();
+	BMP out(width, height);
+	
+	for(int i = 0; i < height; ++i){
+	  for(int j = 0; j < width; ++i){
+	    
+	    *image(i,j)->green
+
+	  }
+
+	}
+
+
 
 	return message;
 }
