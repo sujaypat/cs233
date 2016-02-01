@@ -12,27 +12,32 @@ string extractMessage(const bmp & image) {
 	string message;
 
 	// TODO: write your code here
-	// http://en.cppreference.com/w/cpp/string/basic_string#Operations might be of use
-	// because image is a const reference, any pixel you get needs to be stored in a const pointer
-	// i.e. you need to do
-	// const pixel * p = image(x, y);
-	// just doing
-	// pixel * p = image(x, y);
-	// would give a compilation error
-	int width = image.width();
-	int height  = image.height();
-	BMP out(width, height);
 	
-	for(int i = 0; i < height; ++i){
-	  for(int j = 0; j < width; ++i){
-	    
-	    *image(i,j)->green
-
+	int w = image.width();
+	int h = image.height();
+	int nextPixel = 0;
+	int max = 7; // max 3bit unsigned value
+	unsigned char null = 0;
+	unsigned char letter = 0;
+    
+	for (int i = 0; i < h; i++) {
+	  for (int j = 0; j < w; j++) {
+            const pixel * p = image (j, i );
+            unsigned char last = p->green & 0x01;
+            int currentPlace = max - nextPixel;
+            letter ^= (last << currentPlace);
+            
+            if (nextPixel == max && letter != null) {
+	      message.push_back (letter);
+	      nextPixel = null;
+	      letter = null;
+            }else {
+	      ++nextPixel;
+            }
+            
 	  }
-
+        
 	}
-
-
 
 	return message;
 }
