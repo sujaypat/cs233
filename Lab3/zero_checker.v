@@ -7,5 +7,6 @@ module zero_checker(zero, in);
     // or o2(chain[2], in[2], chain[1]);
     // or o3(chain[3], in[3], chain[2]);
     // ...
+   
     not n0(zero, chain[31]);
 endmodule
