@@ -42,7 +42,7 @@ module alu32(out, overflow, zero, negative, A, B, control);
    
 
    assign negative = out[31];
-   assign zero = out == 0;
+   zero_checker z1(zero, out);
    xor x1(overflow, carryin[31], carryin[30]);
    
 
