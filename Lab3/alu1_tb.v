@@ -1,7 +1,9 @@
 module alu1_test;
     // exhaustively test your 1-bit ALU by adapting mux4_tb.v
 
-   reg a_in, b_in, cin_in;
+   reg a_in = 0;
+   reg b_in = 0;
+   reg cin_in = 0;
    reg [2:0] control = 0;
    
    always #1 a_in = !a_in;
