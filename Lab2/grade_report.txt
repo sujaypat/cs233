@@ -1,0 +1,31 @@
+Grades for version committed on time
+	keypad: 20.0 / 20
+			*Passed test: abcdefg = 48
+			*Passed test: abcdefg = 28
+			*Passed test: abcdefg = 18
+			*Passed test: abcdefg = 44
+			*Passed test: abcdefg = 24
+			*Passed test: abcdefg = 14
+			*Passed test: abcdefg = 42
+			*Passed test: abcdefg = 22
+			*Passed test: abcdefg = 12
+			*Passed test: abcdefg = 21
+			*Passed test: abcdefg = 00
+		
+	extract_message: 40.0 / 40
+			*Passed test: picture1
+			*Passed test: whale
+			*Passed test: panzer
+			*Passed test: nebula
+		
+	count_ones: 40.0 / 40
+			*Passed test: 2
+			*Passed test: 55
+			*Passed test: 42
+			*Passed test: 0xffffffff
+			*Passed test: 0x12345678
+			*Passed test: 0x55555555
+		
+Total: 100.0 / 100
+
+Final Score: 100.0 / 100
