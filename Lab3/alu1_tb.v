@@ -6,8 +6,8 @@ module alu1_test;
    reg cin_in = 0;
    reg [2:0] control = 0;
    
-   always #1 a_in = !a_in;
-   always #1 b_in = !b_in;
+   always #2 a_in = !a_in;
+   always #4 b_in = !b_in;
    always #1 cin_in = !cin_in;
    
    initial begin
