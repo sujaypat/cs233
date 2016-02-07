@@ -6,22 +6,22 @@ module alu1_test;
    reg cin_in = 0;
    reg [2:0] control = 0;
    
-   always #2 a_in = !a_in;
-   always #4 b_in = !b_in;
-   always #1 cin_in = !cin_in;
+   always #1 a_in = !a_in;
+   always #2 b_in = !b_in;
+   always #4 cin_in = !cin_in;
    
    initial begin
       $dumpfile("alu1.vcd");
       $dumpvars(0, alu1_test);
 
-      # 16 control = 1;
-      # 16 control = 2;
-      # 16 control = 3;
-      # 16 control = 4;
-      # 16 control = 5;
-      # 16 control = 6;
-      # 16 control = 7;
-      # 16 $finish;
+      # 8 control = 1;
+      # 8 control = `ALU_ADD;
+      # 8 control = `ALU_SUB;
+      # 8 control = `ALU_AND;
+      # 8 control = `ALU_OR;
+      # 8 control = `ALU_NOR;
+      # 8 control = `ALU_XOR;
+      # 8 $finish;
 
    end // initial begin
    

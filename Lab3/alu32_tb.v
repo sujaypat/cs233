@@ -11,6 +11,20 @@ module alu32_test;
         // add more test cases here!
         # 10 A = 2147483647; B = 2147483647; control = `ALU_ADD; // try adding max int
         # 10 A = -2147483648; B = -2147483648; control = `ALU_SUB; // try subtracting max int
+
+	# 10 A = 2147483632; B = 36; control = `ALU_SUB; // sub large number
+        # 10 A =  32'h7FFFFFFF; B = 1; control = `ALU_ADD;
+        //logic tests
+        # 10 A = 1; B = 1; control = `ALU_AND;
+        # 10 A = 0; B = 1; control = `ALU_OR;
+        # 10 A = 0; B = 0; control = `ALU_NOR;
+        # 10 A = 0; B = 1; control = `ALU_NOR;
+        # 10 A = 1; B = 0; control = `ALU_NOR;
+        # 10 A = 1; B = 1; control = `ALU_NOR;
+        # 10 A = 1; B = 1; control = `ALU_XOR;
+
+        //sub a number from itself; *need zero signal*
+        # 10 A = -1; B = -1; control = `ALU_SUB;
         # 10 $finish;
     end
 

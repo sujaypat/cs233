@@ -22,14 +22,14 @@ module alu1(out, carryout, A, B, carryin, control);
     output      out, carryout;
     input       A, B, carryin;
     input [2:0] control;
-    wire 	wsum, wlogic, wb;
+    wire 	wsum, wlogic, wb, wcout;
    
     // add code here!!!
-   full_adder f1(wsum, carryout, A, wb, carryin);
+   full_adder f1(wsum, wcout, A, wb, carryin);
    mux2 m1(out, wsum, wlogic, control[2]);
    xor x1(wb, B, control[0]);
    logicunit l1(wlogic, A, B, control[1:0]);
-   
+   assign carryout = wcout;
 
    
 endmodule // alu1
