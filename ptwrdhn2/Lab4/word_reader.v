@@ -30,7 +30,28 @@ module word_reader(I, L, U, V, bits, clk, reset);
    wire         sBlank, sBlank_next;
    
    dffe fsBlank(sBlank, sBlank_next, clk, 1'b1, 1'b0);
-
+   
    assign sBlank_next = reset;  // | other condition ... 
+
+   assign in00 = bits[1:0] == 3'b00;
+
+   assign in11 = bits[1:0] == 3'b11;
+   
+   //copied from i_reader
+   assign sGarbage_next = restart | ((sBlank | sI_end) & ~(in00 | in11)) | ((sGarbage | sI) & ~in00);
+   assign sBlank_next = ((sBlank | sGarbage | sI_end) & in00) & ~restart;
+   assign sI_next = ((sBlank | sI_end) & in11) & ~restart;
+   assign sI_end_next = (sI & in00) & ~restart;
+
+   dffe fsGarbage(sGarbage, sGarbage_next, clk, 1'b1, 1'b0);
+   dffe fsBlank(sBlank, sBlank_next, clk, 1'b1, 1'b0);
+   dffe fsI(sI, sI_next, clk, 1'b1, 1'b0);
+   dffe fsI_end(sI_end, sI_end_next, clk, 1'b1, 1'b0);
+
+   assign I = sI_end;
+   
+
+
+
    
 endmodule // word_reader
