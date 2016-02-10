@@ -26,10 +26,23 @@ module i_reader(I, bits, clk, restart);
     output      I;
     input [1:0] bits;
     input       restart, clk;
-    wire        sGarbage, sGarbage_next;
-    
-    assign sGarbage_next = restart;   // | other condition ... 
-        
+    wire        sGarbage, sGarbage_next, in000, in111, sBlank, sI, sI_end, sBlank_next, sI_next, sI_end_next;
+
+    assign in000 = bits[1:0] == 3'b00;
+    assign in111 = bits[1:0] == 3'b11;
+   
+    assign sGarbage_next = restart | ((sBlank | sI_end) & ~(in000 | in111)) | ((sGarbage | sI) & ~in000);   // | other condition ... 
+    assign sBlank_next = ((sBlank | sGarbage | sI_end) & in000) & ~restart;
+    assign sI_next = ((sBlank | sI_end) & in111) & ~restart;
+    assign sI_end_next = (sI & in000) & ~restart;
+
+   
     dffe fsGarbage(sGarbage, sGarbage_next, clk, 1'b1, 1'b0);
-    
+    dffe fsBlank(sBlank, sBlank_next, clk, 1'b1, 1'b0);
+    dffe fsI(sI, sI_next, clk, 1'b1, 1'b0);
+    dffe fsI_end(sI_end, sI_end_next, clk, 1'b1, 1'b0);
+
+    assign I = sI_end;
+   
+   
 endmodule // i_reader
