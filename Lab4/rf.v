@@ -41,6 +41,11 @@ module decoder4 (out, in, enable);
     input     enable;
     output [3:0]   out;
     wire [1:0]    w_enable;
+
+    decoder2 d2_1(out[3:2], in[1], w_enable[1]);
+    decoder2 d2_2(out[1:0], in[0], w_enable[0]);
+   
+
  
     // implement using decoder2's
     
