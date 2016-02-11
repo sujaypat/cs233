@@ -7,7 +7,7 @@ module test;
     reg [4:0]    wr_regnum = 0, rd1_regnum = 0, rd2_regnum = 0;
     reg [31:0]   wr_data = 0;
     wire [31:0]  rd1_data, rd2_data;
-    
+
     initial begin
         $dumpfile("rf.vcd");
         $dumpvars(0, test);
@@ -26,14 +26,21 @@ module test;
           rd2_regnum = 2;
 
         // add more test cases here!
-
-        # 700 $finish;
+        # 10 wr_regnum = 1; wr_data = 4'b1111; enable = 1;
+        # 10 rd2_regnum = 1;
+        # 10 wr_regnum = 1; wr_data = 4'b1101; enable = 1;
+        # 10 rd1_regnum = 1;
+        # 10 wr_regnum = 1; wr_data = 4'b1011; enable = 1;
+        # 10 rd2_regnum = 1;
+        # 10 wr_regnum = 1; wr_data = 4'b0011; enable = 1;
+        # 10 rd1_regnum = 1;
+        # 30 $finish;
     end
-    
+
     initial begin
     end
 
-    mips_regfile rf (rd1_data, rd2_data, rd1_regnum, rd2_regnum, 
+    mips_regfile rf (rd1_data, rd2_data, rd1_regnum, rd2_regnum,
                      wr_regnum, wr_data, enable, clk, reset);
-   
+
 endmodule // test
