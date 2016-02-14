@@ -43,30 +43,35 @@ assign Vo_next = ((start & (~bits[0] & bits[1]))) & (~reset);
 assign V1_next = ((Vo & (bits[0] & ~bits[1]))) & (~reset);
 assign V2_next = ((Vt & (~bits[0] & bits[1]))) & (~reset);
 assign Vout_next = ((Vz & (~bits[0] & ~bits[1]))) & (~reset);
-assign garbage_next = ((Io & (bits[0] & ~bits[1]) | (bits[0] & bits[1])) | (Lo & ((bits[0] & ~bits[1]) | (~bits[0] & bits[1]))) | (Uo & (((bits[0] & ~bits[1]) | (~bits[0] & bits[1])) | (bits[0] & bits[1]))) | (Vo & (((bits[0] & ~bits[1]) | (~bits[0] & bits[1])) | (bits[0] & bits[1]))) | (Vt & (bits[0] & bits[1]) | (~bits[0] & bits[1])) | (Vz & ((bits[0] & bits[1]) | (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Vout & ((bits[0] & bits[1]) | (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Uout & ((bits[0] & bits[1]) | (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Lout & ((bits[0] & bits[1]) | (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Iout & ((bits[0] & bits[1]) | (~bits[0] & bits[1]) | (bits[0] & ~bits[1])))) & (~reset);
+assign garbage_next = ((Io & (bits[0] & ~bits[1]) | (bits[0] & bits[1]))
+| (Lo & ((bits[0] & ~bits[1]) | (~bits[0] & bits[1])))
+| (Uo & (((bits[0] & ~bits[1]) | (~bits[0] & bits[1])) | (bits[0] & bits[1])))
+| (Vo & (((bits[0] & ~bits[1]) | (~bits[0] & bits[1])) | (bits[0] & bits[1])))
+| (Vt & (bits[0] & bits[1]) | (~bits[0] & bits[1])) | (Vz & ((bits[0] & bits[1])
+| (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Vout & ((bits[0] & bits[1])
+| (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Uout & ((bits[0] & bits[1])
+| (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Lout & ((bits[0] & bits[1])
+| (~bits[0] & bits[1]) | (bits[0] & ~bits[1]))) | (Iout & ((bits[0] & bits[1])
+| (~bits[0] & bits[1]) | (bits[0] & ~bits[1])))) & (~reset);
 
 
-dffe fsStart(start, start_next, clk, 1'b1, 1'b0);
-dffe fsIo(Io, Io_next, clk, 1'b1, 1'b0);
-dffe fsLo(Lo, Lo_next, clk, 1'b1, 1'b0);
-dffe fsUo(Uo, Uo_next, clk, 1'b1, 1'b0);
-dffe fsUout(Uout, Uout_next, clk, 1'b1, 1'b0);
-dffe fsLout(Lout, Lout_next, clk, 1'b1, 1'b0);
-dffe fsIout(Iout, Iout_next, clk, 1'b1, 1'b0);
-dffe fsVo(Vo, Vo_next, clk, 1'b1, 1'b0);
-dffe fsV1(Vt, V1_next, clk, 1'b1, 1'b0);
-dffe fsV2(Vz, V2_next, clk, 1'b1, 1'b0);
-dffe fsVout(Vout, Vout_next, clk, 1'b1, 1'b0);
-dffe fsgarbage(garbage,garbage_next, clk, 1'b1, 1'b0);
+dffe sStart(start, start_next, clk, 1'b1, reset);
+dffe sIo(Io, Io_next, clk, 1'b1, reset);
+dffe sLo(Lo, Lo_next, clk, 1'b1, reset);
+dffe sUo(Uo, Uo_next, clk, 1'b1, reset);
+dffe sUout(Uout, Uout_next, clk, 1'b1, reset);
+dffe sLout(Lout, Lout_next, clk, 1'b1, reset);
+dffe sIout(Iout, Iout_next, clk, 1'b1, reset);
+dffe sVo(Vo, Vo_next, clk, 1'b1, reset);
+dffe sV1(Vt, V1_next, clk, 1'b1, reset);
+dffe sV2(Vz, V2_next, clk, 1'b1, reset);
+dffe sVout(Vout, Vout_next, clk, 1'b1, reset);
+dffe sgarbage(garbage, garbage_next, clk, 1'b1, reset);
 
 
 assign I = Iout;
 assign L = Lout;
 assign U = Uout;
 assign V = Vout;
-
-// | other condition ...
-
-//diffe fsS1(sNuLL, sNull, clk, 1'b0, 1'b0);
 
 endmodule // word_reader

@@ -34,7 +34,10 @@ module test;
         # 10 rd2_regnum = 1;
         # 10 wr_regnum = 1; wr_data = 4'b0011; enable = 1;
         # 10 rd1_regnum = 1;
-        # 30 $finish;
+				# 10 rd1_regnum = 0; rd2_regnum = 0;
+				# 10 wr_regnum = 0; wr_data = 4'b0100; rd1_regnum = 0; rd2_regnum = 0;
+				# 10 rd1_regnum = 0; rd2_regnum = 0;
+        # 10 $finish;
     end
 
     initial begin
