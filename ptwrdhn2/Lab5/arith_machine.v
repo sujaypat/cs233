@@ -35,7 +35,7 @@ module arith_machine(except, clock, reset);
     // or the test bench will break
     regfile rf (rsData, rtData, inst[25:21], inst[20:16], Rdest, rdData, writeenable, clock, reset);
 
-	alu32 a1(PC_next,,,, PC[31:0], 32'h4, `ALU_ADD);
+	alu32 a1(PC_next, , , , PC[31:0], 32'h4, `ALU_ADD);
 	alu32 a2(rdData, overflow, zero, negative, A, B, alu_op);
 	mux2v #(5) m1(Rdest, inst[15:11], inst[20:16], rd_src);
 	mux2v m2(B, rtData, imm32, alu_src2);
