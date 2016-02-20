@@ -12,7 +12,6 @@ module arith_machine(except, clock, reset);
     wire [31:0] PC;
 	wire [31:0] PC_next;
 	wire [31:0] rdData;
-	wire [31:0] A;
 	wire [31:0] B;
 	wire [4:0]  Rdest;
 	wire [31:0] rtData;
@@ -35,8 +34,8 @@ module arith_machine(except, clock, reset);
     // or the test bench will break
     regfile rf (rsData, rtData, inst[25:21], inst[20:16], Rdest, rdData, writeenable, clock, reset);
 
-	alu32 a1(PC_next, , , , PC[31:0], 32'h4, `ALU_ADD);
-	alu32 a2(rdData, overflow, zero, negative, A, B, alu_op);
+	alu32 a1(PC_next, , , , PC, 32'h4, `ALU_ADD);
+	alu32 a2(rdData, overflow, zero, negative, rsData, B, alu_op);
 	mux2v #(5) m1(Rdest, inst[15:11], inst[20:16], rd_src);
 	mux2v m2(B, rtData, imm32, alu_src2);
 	sign_extender s1(imm32, inst[15:0]);
