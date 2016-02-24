@@ -11,7 +11,7 @@ module full_machine(except, clock, reset);
 	wire [31:0] inst;
     wire [31:0] PC;
 
-    wire [31:0] nextPC, PCplusfour, branchOut, branchOffset, rsData, jump, imm, luiConnect, memReadout, rdData, B, rtData, out, sltout, dataOut, byte_load_connect, byteout, new_negative,  dataout_byteld;
+    wire [31:0] nextPC, PCplusfour, branchOut, branchOffset, rsData, jump, imm, luiConnect, memReadout, rdData, B, rtData, out, sltout, dataOut, byte_load_connect, byteout, new_negative,  dataout_byteld, thisdiiiiii, rdDatadiiii;
     wire [4:0] Rdest;
     wire [2:0] alu_op;
     wire [1:0] control_type;
@@ -37,17 +37,19 @@ module full_machine(except, clock, reset);
 
     // DO NOT comment out or rename this module
     // or the test bench will break
+	mux2v maddm_B(B[31:0], thisdiiiiii[31:0], 32'b0, addm);
+	mux2v maddm(rdData[31:0], rdDatadiiii[31:0], rtData[31:0], addm);
 	mips_decode m1(alu_op[2:0], wr_enable, rd_src, alu_src2, except, control_type[1:0], mem_read, word_we, byte_we, byte_load, lui, slt, addm, inst[31:26], inst[5:0], zero);
 	alu32 aludm(out[31:0], overflow, zero, negative, rsData[31:0], B[31:0], alu_op[2:0]);
 	mux2v #(5) mrd_src(Rdest[4:0], inst[15:11], inst[20:16], rd_src);
     regfile rf (rsData[31:0], rtData[31:0], inst[25:21], inst[20:16], Rdest[4:0], rdData[31:0], wr_enable, clock, reset);
-	mux2v #(32) mlui(rdData[31:0], memReadout[31:0], luiConnect[31:0], lui);
+	mux2v #(32) mlui(rdDatadiiii[31:0], memReadout[31:0], luiConnect[31:0], lui);
 	mux2v #(32) mslt(sltout[31:0], out[31:0], new_negative, slt);
 	mux2v #(32) mmemread(memReadout[31:0], sltout[31:0], byteout[31:0], mem_read);
 	data_mem dm1(dataOut[31:0], out[31:0], rtData[31:0], word_we, byte_we, clock, reset);
 	mux2v #(32) mbyteld(byteout[31:0], dataOut[31:0], dataout_byteld[31:0] | byte_load_connect[31:0], byte_load);
 	sign_extender s1(imm, inst[15:0]);
-	mux2v #(32) malusrc(B[31:0], rtData[31:0], imm[31:0], alu_src2);
+	mux2v #(32) malusrc(thisdiiiiii[31:0], rtData[31:0], imm[31:0], alu_src2);
 	mux4v #(8) mdataout(dataout_byteld[7:0], dataOut[7:0], dataOut[15:8], dataOut[23:16], dataOut[31:24], out[1:0]);
 
     /* add other modules */
