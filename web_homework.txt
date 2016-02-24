@@ -1,0 +1,10 @@
+  30/30   Homework 0: Course Policies
+  80/80   Homework 1: Digital Logic homework 1
+ 100/100  Homework 2: Digital Logic homework 2
+ 100/100  Homework 3: Number representation and logical operations homework
+ 100/100  Homework 4: Two's complement representation and binary arithmetic
+  50/50   Homework 5: Multiplexors, Logic Units, Delay
+ 100/100  Homework 6: Finite State Machines
+  50/50   Homework 7: Medium Scale Integration
+  30/30   Homework 9: The Arithmetic Machine
+ 640/640  Total
