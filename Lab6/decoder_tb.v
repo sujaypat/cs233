@@ -3,18 +3,45 @@ module decoder_test;
     reg       zero  = 0;
 
     initial begin
-        $dumpfile("decoder.vcd");
-        $dumpvars(0, decoder_test);
+		$dumpfile("decoder.vcd");
+		$dumpvars(0, decoder_test);
 
-        // remember that all your instructions from last week should still work
-             opcode = `OP_OTHER0; funct = `OP0_ADD; // see if addition still works
-        # 10 opcode = `OP_OTHER0; funct = `OP0_SUB; // see if subtraction still works
-        // test all of the others here
-        
+		// remember that all your instructions from last week should still work
+		     opcode = `OP_OTHER0; funct = `OP0_ADD; // see if addition still works
+		# 10 opcode = `OP_OTHER0; funct = `OP0_SUB; // see if subtraction still works
+		// test all of the others here
+		# 10 opcode = `OP_OTHER0; funct = `OP0_AND;
+		# 10 opcode = `OP_OTHER0; funct = `OP0_OR;
+		# 10 opcode = `OP_OTHER0; funct = `OP0_NOR;
+		# 10 opcode = `OP_OTHER0; funct = `OP0_XOR;
+		# 10 opcode = `OP_ADDI;
+		# 10 opcode = `OP_ANDI;
+		# 10 opcode = `OP_ORI;
+		# 10 opcode = `OP_XORI;
+		# 10 opcode = 6'b101010; funct = `OP0_ADD;
+		# 10 opcode = 6'b110111; funct = `OP0_SUB;
+		# 10 opcode = 6'b110111; funct = `OP0_AND;
+		# 10 opcode = 6'b110111; funct = `OP0_OR;
+		# 10 opcode = 6'b110111; funct = `OP0_NOR;
+		# 10 opcode = 6'b110111; funct = `OP0_XOR;
+
+
+
         // as should all the new instructions from this week
         # 10 opcode = `OP_BEQ; zero = 0; // try a not taken beq
         # 10 opcode = `OP_BEQ; zero = 1; // try a taken beq
         // add more tests here!
+		# 10 opcode = `OP_BNE; zero = 0;
+		# 10 opcode = `OP_BNE; zero = 1;
+		# 10 opcode = `OP_J;
+		# 10 opcode = `OP_OTHER0; funct = `OP0_JR;
+		# 10 opcode = `OP_LUI;
+		# 10 opcode = `OP_LW;
+		# 10 opcode = `OP_LBU;
+		# 10 opcode = `OP_SW;
+		# 10 opcode = `OP_SB;
+
+
 
         # 10 $finish;
     end

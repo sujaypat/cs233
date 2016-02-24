@@ -3,6 +3,7 @@
 
 .data
 # your test data goes here
+a: .word 0 1 2 4 8 16
 
 .text
 main:
