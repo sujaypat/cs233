@@ -27,7 +27,7 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     output       mem_read, word_we, byte_we, byte_load, lui, slt, addm;
     input  [5:0] opcode, funct;
     input        zero;
-	wire op_add, op_sub, op_and, op_or, op_nor, op_xor, op_addi, op_andi, op_ori, op_xori, op_beq, op_bne, op_j, op_jr, op_lui, op_slt, op_lw, op_lbu, op_sw, op_sb;
+	wire op_add, op_sub, op_and, op_or, op_nor, op_xor, op_addi, op_andi, op_ori, op_xori, op_beq, op_bne, op_j, op_jr, op_lui, op_slt, op_lw, op_lbu, op_sw, op_sb, op_addm;
 
 
 	assign op_add = (opcode == `OP_OTHER0) & (funct == `OP0_ADD);
@@ -57,7 +57,7 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     assign alu_op[1] = (op_add | op_sub| op_nor | op_xor | op_addi | op_xori | op_beq | op_bne | op_slt | op_lw | op_lbu | op_sw | op_sb);
     assign alu_op[2] = (op_and | op_or | op_nor | op_xor | op_andi | op_ori | op_xori);
     assign rd_src = (op_addi | op_andi | op_ori | op_xori | op_lui | op_lw | op_lbu | op_sw | op_sb);
-    assign writeenable = ~(op_beq | op_bne | op_j | op_jr | op_sw | op_sb);
+    assign writeenable = ~(op_beq | op_bne | op_j | op_jr | op_sw | op_sb | except);
     assign alu_src2 = (op_addi | op_andi | op_ori | op_xori | op_lui | op_lw | op_lbu | op_sw | op_sb);
     assign control_type[0] = (op_beq & zero) | (op_bne & !zero) | op_jr;
     assign control_type[1] = op_j | op_jr;
