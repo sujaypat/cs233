@@ -7,4 +7,7 @@ a: .word 0 1 2 4 8 16
 
 .text
 main:
-	# your test code goes here
+	la $4, a
+	lw $5, 0($4)
+	lw $6, 4($4)
+	

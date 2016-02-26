@@ -40,6 +40,11 @@ module decoder_test;
 		# 10 opcode = `OP_LBU;
 		# 10 opcode = `OP_SW;
 		# 10 opcode = `OP_SB;
+		# 10 opcode = 20; funct = 20; zero = 0;
+		# 10 opcode = 22; funct = 22; zero = 0;
+		# 10 opcode = 25; funct = 25; zero = 0;
+		# 10 opcode = 27; funct = 27; zero = 0;
+		# 10 opcode = 26; funct = 26; zero = 0;
 
 
 
