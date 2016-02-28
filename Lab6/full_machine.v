@@ -11,7 +11,7 @@ module full_machine(except, clock, reset);
 	wire [31:0] inst;
     wire [31:0] PC;
 
-    wire [31:0] nextPC, PCplusfour, branchOut, branchOffset, rsData, jump, imm, luiConnect, memReadout, rdData, B, rtData, out, sltout, dataOut, byte_load_connect, byteout, new_negative, Bout, rdDatafinal;
+    wire [31:0] nextPC, PCplusfour, branchOut, branchOffset, rsData, jump, imm, luiConnect, memReadout, rdData, B, rtData, out, sltout, dataOut, byte_load_connect, byteout, new_negative, Bout, rdDatafinal, addmData;
     wire [4:0] Rdest;
     wire [2:0] alu_op;
     wire [1:0] control_type;
@@ -35,14 +35,16 @@ module full_machine(except, clock, reset);
 	data_mem dm1(dataOut[31:0], out[31:0], rtData[31:0], word_we, byte_we, clock, reset);
     regfile rf (rsData[31:0], rtData[31:0], inst[25:21], inst[20:16], Rdest[4:0], rdData[31:0], wr_enable, clock, reset);
 
+
+
 	alu32 a1(PCplusfour[31:0], , , , PC[31:0], 32'h4, `ALU_ADD);
 	alu32 a2(branchOut[31:0], , , , PCplusfour[31:0], branchOffset[31:0], `ALU_ADD);
 	alu32 aludatamem(out[31:0], overflow, zero, negative, rsData[31:0], B[31:0], alu_op[2:0]);
-
+	alu32 alufuckyouaddm(addmData[31:0], , , , rtData[31:0], dataOut[31:0], 3'b010);
 
 
 	mux2v maddm_B(B[31:0], Bout[31:0], 32'b0, addm);
-	mux2v maddm(rdData[31:0], rdDatafinal[31:0], rtData[31:0], addm);
+	mux2v maddmfinal(rdData[31:0], rdDatafinal[31:0], addmData[31:0], addm);
 	mux2v #(5) mrd_src(Rdest[4:0], inst[15:11], inst[20:16], rd_src);
 	mux2v #(32) mlui(rdDatafinal[31:0], memReadout[31:0], luiConnect[31:0], lui);
 	mux2v #(32) mslt(sltout[31:0], out[31:0], new_negative, slt);

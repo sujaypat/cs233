@@ -54,7 +54,7 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
 	assign op_addm = (opcode == `OP_OTHER0) & (funct == `OP0_ADDM);
 
 	assign alu_op[0] = (op_sub | op_or | op_xor | op_ori | op_xori | op_beq | op_bne | op_slt);
-    assign alu_op[1] = (op_add | op_sub| op_nor | op_xor | op_addi | op_xori | op_beq | op_bne | op_slt | op_lw | op_lbu | op_sw | op_sb);
+    assign alu_op[1] = (op_add | op_sub| op_nor | op_xor | op_addi | op_xori | op_beq | op_bne | op_slt | op_lw | op_lbu | op_sw | op_sb | op_addm);
     assign alu_op[2] = (op_and | op_or | op_nor | op_xor | op_andi | op_ori | op_xori);
     assign rd_src = (op_addi | op_andi | op_ori | op_xori | op_lui | op_lw | op_lbu | op_sw | op_sb);
     assign writeenable = ~(op_beq | op_bne | op_j | op_jr | op_sw | op_sb | except);
@@ -69,6 +69,6 @@ module mips_decode(alu_op, writeenable, rd_src, alu_src2, except, control_type,
     assign slt = op_slt;
 	assign addm = op_addm;
 
-    assign except = ~(op_add | op_sub | op_and | op_or | op_nor | op_xor | op_addi | op_andi | op_ori | op_xori | op_beq | op_bne | op_j | op_jr | op_lui | op_slt | op_lw | op_lbu | op_sw | op_sb);
+    assign except = ~(op_add | op_sub | op_and | op_or | op_nor | op_xor | op_addi | op_andi | op_ori | op_xori | op_beq | op_bne | op_j | op_jr | op_lui | op_slt | op_lw | op_lbu | op_sw | op_sb | op_addm);
 
 endmodule // mips_decode
