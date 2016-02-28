@@ -43,6 +43,7 @@ module full_machine(except, clock, reset);
 	alu32 alufuckyouaddm(addmData[31:0], , , , rtData[31:0], dataOut[31:0], 3'b010);
 
 
+
 	mux2v maddm_B(B[31:0], Bout[31:0], 32'b0, addm);
 	mux2v maddmfinal(rdData[31:0], rdDatafinal[31:0], addmData[31:0], addm);
 	mux2v #(5) mrd_src(Rdest[4:0], inst[15:11], inst[20:16], rd_src);
