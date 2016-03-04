@@ -1,0 +1,48 @@
+Grades for version committed on time
+	length: 10.0 / 10
+			*Passed test: 0x0
+			*Passed test: 0x0 (evil)
+			*Passed test: 0x1
+			*Passed test: 0x1 (evil)
+			*Passed test: 0x2
+			*Passed test: 0x2 (evil)
+			*Passed test: 0x7
+			*Passed test: 0x7 (evil)
+			*Passed test: 0x4D0
+			*Passed test: 0x4D0 (evil)
+			*Passed test: 0xD
+			*Passed test: 0xD (evil)
+			*Passed test: 0xBADF00D
+			*Passed test: 0xBADF00D (evil)
+			*Passed test: 0x0FF1CE
+			*Passed test: 0x0FF1CE (evil)
+			*Failed test: 0xFFFFFFFF (extra credit)
+				*Your output: 0 
+			*Failed test: 0xFFFFFFFF (extra credit, evil)
+				*Your output: 0 
+			*Failed test: 0xA0000000 (extra credit)
+				*Your output: 0 
+			*Failed test: 0xA0000000 (extra credit, evil)
+				*Your output: 0 
+		
+	str_cmp: 7.5 / 10
+			*Passed test: str_cmp("", "")
+			*Partially passed test: str_cmp("", "") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("a", "")
+			*Partially passed test: str_cmp("a", "") (callee-saved registers were modified)
+			*Passed test: str_cmp("ab", "ab")
+			*Partially passed test: str_cmp("ab", "ab") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("", "b")
+			*Partially passed test: str_cmp("", "b") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("this is a string!", "this is a string!")
+			*Partially passed test: str_cmp("this is a string!", "this is a string!") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("fun x y -> x +. y", "fun x -> fun y -> x +. y")
+			*Partially passed test: str_cmp("fun x y -> x +. y", "fun x -> fun y -> x +. y") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("!@#$%^&*()_+", "!@#$%^&*()_+")
+			*Partially passed test: str_cmp("!@#$%^&*()_+", "!@#$%^&*()_+") (evil) (callee-saved registers were modified)
+			*Passed test: str_cmp("code lyoko", "we'll reset it all")
+			*Partially passed test: str_cmp("code lyoko", "we'll reset it all") (evil) (callee-saved registers were modified)
+		
+Total: 17.5 / 20
+
+Final Score: 17.5 / 20
