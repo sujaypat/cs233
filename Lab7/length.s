@@ -13,19 +13,14 @@
 
 .globl length
 length:
-	# Your code goes here :)
-	li		$t1, 0		# num_bits
-	move	$t2, $a0	# argument
+	li	$v0, 0			# int num_buts = 0
 
-forloop:
-	ble		$t2, 0, endfor
-	bge		$t1, 32, endfor
-	srl		$t2, $t2, 1
-	add		$t1, $t1, 1
-	j		forloop
+l_for:
+	bleu	$a0, $0, l_done		# binary > 0
+	bge	$v0, 32, l_done		# num_bits < UNSIGNED_SIZE
+	srl	$a0, $a0, 1		# binary = binary >> 1
+	add	$v0, $v0, 1		# num_bits++
+	j	l_for
 
-
-endfor:
-	move 	$v0, $t1
-
-	jr	$ra
+l_done:
+	jr	$ra			# return num_bits
