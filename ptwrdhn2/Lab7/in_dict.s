@@ -14,4 +14,8 @@
 .globl in_dict
 in_dict:
 	# Your code goes here :)
+	
+
+
+
 	jr	$ra
