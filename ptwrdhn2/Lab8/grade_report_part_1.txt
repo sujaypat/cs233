@@ -1,0 +1,22 @@
+Grades for version committed on time
+	sub_str: 20.0 / 20
+			*Passed test: sub_str("", 0)
+			*Passed test: sub_str("", 0) (evil)
+			*Passed test: sub_str("a", 1)
+			*Passed test: sub_str("a", 1) (evil)
+			*Passed test: sub_str("abc", 2)
+			*Passed test: sub_str("abc", 2) (evil)
+			*Passed test: sub_str("abc", 4)
+			*Passed test: sub_str("abc", 4) (evil)
+			*Passed test: sub_str("1234567890", 10)
+			*Passed test: sub_str("1234567890", 10) (evil)
+			*Passed test: sub_str("", 100)
+			*Passed test: sub_str("", 100) (evil)
+			*Passed test: sub_str("The quick brown fox jumps over the lazy dog.", 30)
+			*Passed test: sub_str("The quick brown fox jumps over the lazy dog.", 30) (evil)
+			*Passed test: sub_str("C goes in, MIPS comes out, you can't explain that", 25)
+			*Passed test: sub_str("C goes in, MIPS comes out, you can't explain that", 25) (evil)
+		
+Total: 20.0 / 20
+
+Final Score: 20.0 / 20
