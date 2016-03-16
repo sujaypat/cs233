@@ -1,0 +1,22 @@
+Grades for version committed on time
+	split_string: 80.0 / 80
+			*Passed test: "helloworld", dict_1
+			*Passed test: "helloworld", dict_1 (evil)
+			*Passed test: "aaaabbbbcccc", dict_2
+			*Passed test: "aaaabbbbcccc", dict_2 (evil)
+			*Passed test: "bbb", dict_2
+			*Passed test: "bbb", dict_2 (evil)
+			*Passed test: "hellohellohello", dict_1
+			*Passed test: "hellohellohello", dict_1 (evil)
+			*Passed test: "aaaaaaaaaaaaaaaa", dict_3
+			*Passed test: "aaaaaaaaaaaaaaaa", dict_3 (evil)
+			*Passed test: "abcdefg", dict_3
+			*Passed test: "abcdefg", dict_3 (evil)
+			*Passed test: "nevergonnagiveyouup", dict_4
+			*Passed test: "nevergonnagiveyouup", dict_4 (evil)
+			*Passed test: "nevergonnaletyoudown", dict_4
+			*Passed test: "nevergonnaletyoudown", dict_4 (evil)
+		
+Total: 80.0 / 80
+
+Final Score: 80.0 / 80
