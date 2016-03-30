@@ -15,7 +15,7 @@ TIMER         = 0xffff001c
 TIMER_MASK    = 0x8000
 TIMER_ACK     = 0xffff006c
 
-.text 
+.text
 main:
 	# enable interrupts
 	li	$t4, TIMER_MASK		# timer interrupt enable bit
@@ -31,7 +31,7 @@ main:
 	li	$a0, 10
 	sw	$a0, VELOCITY		# drive
 
-infinite: 
+infinite:
 	j      infinite
 
 
@@ -44,23 +44,23 @@ unhandled_str:	.asciiz "Unhandled interrupt type\n"
 .ktext 0x80000180
 interrupt_handler:
 .set noat
-	move	$k1, $at		# Save $at                               
+	move	$k1, $at		# Save $at
 .set at
 	la	$k0, chunkIH
-	sw	$a0, 0($k0)		# Get some free registers                  
-	sw	$a1, 4($k0)		# by storing them to a global variable     
+	sw	$a0, 0($k0)		# Get some free registers
+	sw	$a1, 4($k0)		# by storing them to a global variable
 
-	mfc0	$k0, $13		# Get Cause register                       
-	srl	$a0, $k0, 2                
-	and	$a0, $a0, 0xf		# ExcCode field                            
-	bne	$a0, 0, non_intrpt         
+	mfc0	$k0, $13		# Get Cause register
+	srl	$a0, $k0, 2
+	and	$a0, $a0, 0xf		# ExcCode field
+	bne	$a0, 0, non_intrpt
 
-interrupt_dispatch:			# Interrupt:                             
-	mfc0	$k0, $13		# Get Cause register, again                 
-	beq	$k0, 0, done		# handled all outstanding interrupts     
+interrupt_dispatch:			# Interrupt:
+	mfc0	$k0, $13		# Get Cause register, again
+	beq	$k0, 0, done		# handled all outstanding interrupts
 
-	and	$a0, $k0, BONK_MASK	# is there a bonk interrupt?                
-	bne	$a0, 0, bonk_interrupt   
+	and	$a0, $k0, BONK_MASK	# is there a bonk interrupt?
+	bne	$a0, 0, bonk_interrupt
 
 	and	$a0, $k0, TIMER_MASK	# is there a timer interrupt?
 	bne	$a0, 0, timer_interrupt
@@ -69,7 +69,7 @@ interrupt_dispatch:			# Interrupt:
 
 	li	$v0, PRINT_STRING	# Unhandled interrupt types
 	la	$a0, unhandled_str
-	syscall 
+	syscall
 	j	done
 
 bonk_interrupt:
@@ -86,7 +86,7 @@ timer_interrupt:
 	sw	$zero, ANGLE_CONTROL	# ???
 
 	lw	$v0, TIMER		# current time
-	add	$v0, $v0, 50000  
+	add	$v0, $v0, 50000
 	sw	$v0, TIMER		# request timer in 50000 cycles
 
 	j	interrupt_dispatch	# see if other interrupts are waiting
@@ -103,5 +103,5 @@ done:
 	lw	$a1, 4($k0)
 .set noat
 	move	$at, $k1		# Restore $at
-.set at 
+.set at
 	eret

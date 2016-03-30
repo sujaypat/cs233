@@ -40,12 +40,63 @@ OUT_OF_WATER_INT_MASK	= 0x4000
 
 
 .data
+PLANT_SCAN =  0xffff0050
 # put your data things here
-
+.align 2
+plant_data: .space 88
 
 .text
 main:
 	# put your code here :)
+	la		$t0, plant_data	#
+	sw		$t0, PLANT_SCAN	#
+
+	lw		$t1, 4($t0)		# load plant 0 x loc
+	lw		$t2, BOT_X		# load spimbot x loc
+
+
+angle_setting:
+	sub 	$t3, $t2, $t1	# $t3 will be 1 if bot is right of plant0
+
+	li		$t9, 1			#
+	sw		$t9, ANGLE_CONTROL	# set angle to absolute
+
+	beq		$t3, 0, water_bitches	# if  ==  then
+
+	bge		$t3, 1, ebola	#
+	li		$t8, 0			#
+	sw		$t8, ANGLE		#
+
+ebola:
+	li		$t8, 180		#
+	sw		$t8, ANGLE		#
+
+velocity_setting:
+	li		$t7, 10			#  =
+
+	sw		$t7, VELOCITY	#
+
+
+water_bitches:
+
+	sw		$t9, WATER_VALVE#  = 
+
+
+
+
+
+
+	# li		$t2, 4			# i = 0
+
+# forloop:
+	# bge		$t2, $t1, end	# if  <  then
+
+
+# continue:
+	# add		$t2, $t2, 4		#  =  -
+	# j		forloop				# jump to forloop
+
+end:
 
 	# note that we infinite loop to avoid stopping the simulation early
 	j	main
