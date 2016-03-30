@@ -40,7 +40,6 @@ OUT_OF_WATER_INT_MASK	= 0x4000
 
 
 .data
-PLANT_SCAN =  0xffff0050
 # put your data things here
 .align 2
 plant_data: .space 88
@@ -61,11 +60,15 @@ angle_setting:
 	li		$t9, 1			#
 	sw		$t9, ANGLE_CONTROL	# set angle to absolute
 
-	beq		$t3, 0, water_bitches	# if  ==  then
+	bne		$t3, 0, water_bitches	# if  ==  then
+	sw		$t9, WATER_VALVE#  =
 
-	bge		$t3, 1, ebola	#
+water_bitches:
+
+	bgt		$t3, 0, ebola	#
 	li		$t8, 0			#
 	sw		$t8, ANGLE		#
+	j		velocity_setting# jump to velocity_setting
 
 ebola:
 	li		$t8, 180		#
@@ -77,9 +80,7 @@ velocity_setting:
 	sw		$t7, VELOCITY	#
 
 
-water_bitches:
 
-	sw		$t9, WATER_VALVE#  = 
 
 
 
