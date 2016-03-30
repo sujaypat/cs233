@@ -60,10 +60,10 @@ angle_setting:
 	li		$t9, 1			#
 	sw		$t9, ANGLE_CONTROL	# set angle to absolute
 
-	bne		$t3, 0, water_bitches	# if  ==  then
+	bne		$t3, 0, water_b____es	# if  ==  then
 	sw		$t9, WATER_VALVE#  =
 
-water_bitches:
+water_b____es:
 
 	bgt		$t3, 0, ebola	#
 	li		$t8, 0			#
