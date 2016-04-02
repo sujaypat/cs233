@@ -38,7 +38,6 @@ CLOUD_CHANGE_STATUS_INT_MASK	= 0x2000
 OUT_OF_WATER_ACK	= 0xffff0068
 OUT_OF_WATER_INT_MASK	= 0x4000
 
-
 .data
 # put your data things here
 .align 2
@@ -78,24 +77,6 @@ velocity_setting:
 	li		$t7, 10			#  =
 
 	sw		$t7, VELOCITY	#
-
-
-
-
-
-
-
-
-
-	# li		$t2, 4			# i = 0
-
-# forloop:
-	# bge		$t2, $t1, end	# if  <  then
-
-
-# continue:
-	# add		$t2, $t2, 4		#  =  -
-	# j		forloop				# jump to forloop
 
 end:
 
