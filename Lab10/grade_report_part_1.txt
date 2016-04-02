@@ -1,0 +1,10 @@
+Grades for version committed on time
+	part 1: 40.0 / 40.0
+			*Passed test: mapseed 185 (flowers right)
+			*Passed test: mapseed 25 (flowers left)
+			*Passed test: mapseed 357 (flowers middle)
+			*Passed test: mapseed 123456789 (flowers middle)
+		
+Total: 40.0 / 40.0
+
+Final Score: 40.0 / 40.0
