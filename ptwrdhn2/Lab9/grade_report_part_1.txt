@@ -1,0 +1,43 @@
+Grades for version committed on time
+	timer: 21.72 / 30
+			*Passed test: initial reset
+			*Passed test: initial reset
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Passed test: requesting interrupt
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Failed test: raising interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = 7
+			*Failed test: raising interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = 8
+			*Failed test: raising interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = 9
+			*Failed test: achnowledging interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = z
+			*Failed test: achnowledged interrupt
+				*Your output: no output
+			*Passed test: requesting interrupt
+			*Passed test: overwriting previous request
+			*Failed test: raising interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = 14
+			*Failed test: acknowledging interrupt
+				*Your output: TimerInterrupt = 0 TimerAddress = 1 cycle = z
+			*Failed test: acknowledged interrupt
+				*Your output: no output
+			*Passed test: reading cycle
+			*Passed test: reading cycle
+			*Passed test: reading from non-time address
+			*Passed test: request a time interrupt
+			*Passed test: resetting again ...
+			*Passed test: reset
+			*Passed test: reset
+			*Passed test: reset
+			*Passed test: reset
+		
+Total: 21.72 / 30
+
+Final Score: 21.72 / 30
