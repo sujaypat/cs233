@@ -4,7 +4,7 @@ module pipelined_machine(clk, reset);
    wire [31:0]  PC;
    wire [31:2]  next_PC, PC_plus4, PC_target;
    wire [31:0]  inst;
-   
+
    wire [31:0]  imm = {{ 16{inst[15]} }, inst[15:0] };  // sign-extended immediate
    wire [4:0]   rs = inst[25:21];
    wire [4:0]   rt = inst[20:16];
@@ -26,22 +26,22 @@ module pipelined_machine(clk, reset);
    adder30 target_PC_adder(PC_target, PC_plus4, imm[29:0]);
    mux2v #(30) branch_mux(next_PC, PC_plus4, PC_target, PCSrc);
    assign PCSrc = BEQ & zero;
-      
+
    instruction_memory imem (inst, PC[31:2]);
 
-   mips_decode decode(ALUOp, RegWrite, BEQ, ALUSrc, MemRead, MemWrite, MemToReg, RegDst, 
+   mips_decode decode(ALUOp, RegWrite, BEQ, ALUSrc, MemRead, MemWrite, MemToReg, RegDst,
                       opcode, funct);
-   
+
    regfile rf (rd1_data, rd2_data,
-               rs, rt, wr_regnum, wr_data, 
+               rs, rt, wr_regnum, wr_data,
                RegWrite, clk, reset);
 
    mux2v #(32) imm_mux(B_data, rd2_data, imm, ALUSrc);
    alu32 alu(alu_out_data, zero, ALUOp, rd1_data, B_data);
-   
+
    data_mem data_memory(load_data, alu_out_data, rd2_data, MemRead, MemWrite, clk, reset);
-   
+
    mux2v #(32) wb_mux(wr_data, alu_out_data, load_data, MemToReg);
    mux2v #(5) rd_mux(wr_regnum, rt, rd, RegDst);
-   
+
 endmodule // pipelined_machine
