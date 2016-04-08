@@ -43,9 +43,9 @@ module pipelined_machine(clk, reset);
 	register #(1) memtoreg_mw(MemToReg_MW, MemToReg, clk, 1'b1, reset);
 	register #(1) regdst_mw(RegDst_MW, RegDst, clk, 1'b1, reset);
 
-	regfile rf (rd1_data_old, rd2_data, rs, rt, wr_regnum_MW, wr_data, RegWrite, clk, reset);
+	regfile rf (rd1_data_old, rd2_data, rs, rt, wr_regnum_MW, wr_data, RegWrite_MW, clk, reset);
 
-	mux2v #(32) imm_mux(B_data, rd2_data_old, imm, ALUSrc_MW);
+	mux2v #(32) imm_mux(B_data, rd2_data_old, imm, ALUSrc);
 	alu32 alu(alu_out_data, zero, ALUOp, rd1_data, B_data);
 
 	data_mem data_memory(load_data, alu_out_data_MW, rd2_data_MW, MemRead_MW, MemWrite_MW, clk, reset);
@@ -53,13 +53,13 @@ module pipelined_machine(clk, reset);
 	mux2v #(32) wb_mux(wr_data, alu_out_data_MW, load_data, MemToReg_MW);
 	mux2v #(5) rd_mux(wr_regnum, rt, rd, RegDst);
 
-	assign ForwardA = ((rs == wr_regnum_MW) && RegWrite_MW);
-	assign ForwardB = ((rt == wr_regnum_MW) && RegWrite_MW);
+	assign ForwardA = ((rs == wr_regnum_MW) && RegWrite_MW && (rs != 0));
+	assign ForwardB = ((rt == wr_regnum_MW) && RegWrite_MW && (rt != 0));
 	mux2v #(32) forwarda_mux(rd1_data, rd1_data_old, alu_out_data_MW, ForwardA);
 	mux2v #(32) forwardb_mux(rd2_data_old, rd2_data, alu_out_data_MW, ForwardB);
 
 	register #(5) de_mw_regnum(wr_regnum_MW, wr_regnum, clk, 1'b1, reset);
-	register #(32) de_mw_forwardB(rd2_data_MW, rd2_data, clk, 1'b1, reset);
+	register #(32) de_mw_forwardB(rd2_data_MW, rd2_data_old, clk, 1'b1, reset);
 	register #(32) de_mw_aluresult(alu_out_data_MW, alu_out_data, clk, 1'b1, reset);
 
 endmodule // pipelined_machine
