@@ -1,0 +1,20 @@
+Grades for version committed on time
+	part 2: 37.5 / 60.0
+			*Partially passed test: mapseed 32 (bot NE of cloud)
+					plant not grown
+			*Partially passed test: mapseed 3 (bot NW of cloud)
+					plant not grown
+			*Passed test: mapseed 23 (bot SW of cloud)
+			*Passed test: mapseed 4 (bot SE of cloud)
+			*Failed test: mapseed 18 (bot directly above cloud)
+					CLOUD_CHANGE_STATUS not acknowledged
+					plant not grown
+			*Passed test: mapseed 35 (bot directly below cloud)
+			*Partially passed test: mapseed 37 (bot directly right of cloud)
+					plant not grown
+			*Partially passed test: mapseed 104 (bot directly left of cloud)
+					plant not grown
+		
+Total: 37.5 / 60.0
+
+Final Score: 37.5 / 60.0
