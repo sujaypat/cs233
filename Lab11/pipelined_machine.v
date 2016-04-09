@@ -26,6 +26,7 @@ module pipelined_machine(clk, reset);
 
 	assign Stall = ((wr_regnum_MW == rs && rs != 0) || (wr_regnum_MW == rt && rt != 0)) && (MemRead_MW);
 
+
 	register #(30, 30'h100000) PC_reg(PC[31:2], next_PC[31:2], clk, ~Stall, reset);
 	assign PC[1:0] = 2'b0;  // bottom bits hard coded to 00
 	adder30 next_PC_adder(PC_plus4_old, PC[31:2], 30'h1);
@@ -34,18 +35,18 @@ module pipelined_machine(clk, reset);
 	assign PCSrc = BEQ & zero;
 
 	instruction_memory imem (inst_pre_pipe, PC[31:2]);
-	register #(32) if_de_imem(inst, inst_pre_pipe, clk, ~Stall, reset);
-	register #(30) if_de_pcplusfour(PC_plus4, PC_plus4_old, clk, ~Stall, reset);
+	register #(32) if_de_imem(inst, inst_pre_pipe, clk, ~Stall, PCSrc || reset);
+	register #(30) if_de_pcplusfour(PC_plus4, PC_plus4_old, clk, ~Stall, PCSrc || reset);
 
 	mips_decode decode(ALUOp, RegWrite, BEQ, ALUSrc, MemRead, MemWrite, MemToReg, RegDst, opcode, funct);
-	register #(3) aluop_mw(ALUOp_MW, ALUOp, clk, ~Stall, reset);
-	register #(1) regwrite_mw(RegWrite_MW, RegWrite, clk, ~Stall, reset);
-	register #(1) beq_mw(BEQ_MW, BEQ, clk, ~Stall, reset);
-	register #(1) alusrc_mw(ALUSrc_MW, ALUSrc, clk, ~Stall, reset);
-	register #(1) memread_mw(MemRead_MW, MemRead, clk, ~Stall, reset);
-	register #(1) memwrite_mw(MemWrite_MW, MemWrite, clk, ~Stall, reset);
-	register #(1) memtoreg_mw(MemToReg_MW, MemToReg, clk, ~Stall, reset);
-	register #(1) regdst_mw(RegDst_MW, RegDst, clk, ~Stall, reset);
+	register #(3) aluop_mw(ALUOp_MW, ALUOp, clk, 1'b1, PCSrc);
+	register #(1) regwrite_mw(RegWrite_MW, RegWrite, clk, 1'b1, PCSrc);
+	register #(1) beq_mw(BEQ_MW, BEQ, clk, 1'b1, PCSrc);
+	register #(1) alusrc_mw(ALUSrc_MW, ALUSrc, clk, 1'b1, PCSrc);
+	register #(1) memread_mw(MemRead_MW, MemRead, clk, 1'b1, PCSrc);
+	register #(1) memwrite_mw(MemWrite_MW, MemWrite, clk, 1'b1, PCSrc);
+	register #(1) memtoreg_mw(MemToReg_MW, MemToReg, clk, 1'b1, PCSrc);
+	register #(1) regdst_mw(RegDst_MW, RegDst, clk, 1'b1, PCSrc);
 
 	regfile rf (rd1_data_old, rd2_data, rs, rt, wr_regnum_MW, wr_data, RegWrite_MW, clk, reset);
 
@@ -61,8 +62,8 @@ module pipelined_machine(clk, reset);
 	mux2v #(32) forwarda_mux(rd1_data, rd1_data_old, alu_out_data_MW, ForwardA);
 	mux2v #(32) forwardb_mux(rd2_data_old, rd2_data, alu_out_data_MW, ForwardB);
 
-	register #(5) de_mw_regnum(wr_regnum_MW, wr_regnum, clk, 1'b1, reset);
-	register #(32) de_mw_forwardB(rd2_data_MW, rd2_data_old, clk, 1'b1, reset);
-	register #(32) de_mw_aluresult(alu_out_data_MW, alu_out_data, clk, 1'b1, reset);
+	register #(5) de_mw_regnum(wr_regnum_MW, wr_regnum, clk, 1'b1, PCSrc);
+	register #(32) de_mw_forwardB(rd2_data_MW, rd2_data_old, clk, 1'b1, PCSrc);
+	register #(32) de_mw_aluresult(alu_out_data_MW, alu_out_data, clk, 1'b1, PCSrc);
 
 endmodule // pipelined_machine
