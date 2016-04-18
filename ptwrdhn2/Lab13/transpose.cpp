@@ -9,11 +9,15 @@
 using std::min;
 
 // modify this function to add tiling
-void
-transpose_tiled(int **src, int **dest) {
-    for (int i = 0; i < SIZE; i ++) {
-        for (int j = 0; j < SIZE; j ++) {
-            dest[i][j] = src[j][i];
-        }
-    }
+void transpose_tiled(int **src, int **dest) {
+	int TILE_SIZE = 32;
+	for (int i = 0; i < SIZE; i += TILE_SIZE) {
+		for (int j = 0; j < SIZE; j += TILE_SIZE) {
+			for (int ii = i; ii < std::min(i + TILE_SIZE, SIZE); ii++) {
+				for (int jj = j; jj < std::min(j + TILE_SIZE, SIZE); jj++) {
+					dest[ii][jj] = src[jj][ii];
+				}
+			}
+		}
+	}
 }
