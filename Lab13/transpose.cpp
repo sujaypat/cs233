@@ -13,8 +13,8 @@ void transpose_tiled(int **src, int **dest) {
 	int TILE_SIZE = 32;
 	for (int i = 0; i < SIZE; i += TILE_SIZE) {
 		for (int j = 0; j < SIZE; j += TILE_SIZE) {
-			for (int ii = i; ii < std::min(i + TILE_SIZE, SIZE); ii++) {
-				for (int jj = j; jj < std::min(j + TILE_SIZE, SIZE); jj++) {
+			for (int ii = i; ii < i + TILE_SIZE && ii < SIZE; ii++) {
+				for (int jj = j; jj < j + TILE_SIZE && jj < SIZE; jj++) {
 					dest[ii][jj] = src[jj][ii];
 				}
 			}
