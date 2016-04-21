@@ -1,0 +1,27 @@
+Grades for version committed on time
+	unit_tests: 16 / 16
+			*Passed test: num bits
+			*Passed test: get address
+			*Passed test: extract
+		
+	four_caches: 64.0 / 64
+			*Passed test: write-through , write-allocate for config 1
+			*Passed test: write-through , write-allocate for config 1
+			*Passed test: write-through , write-allocate for config 1
+			*Passed test: write-through , write-allocate for config 1
+			*Passed test: write-back , write-around for config 2
+			*Passed test: write-back , write-around for config 2
+			*Passed test: write-back , write-around for config 2
+			*Passed test: write-back , write-around for config 2
+			*Passed test: write-back , write-allocate for config 3
+			*Passed test: write-back , write-allocate for config 3
+			*Passed test: write-back , write-allocate for config 3
+			*Passed test: write-back , write-allocate for config 3
+			*Passed test: write-through , write-around for config 0
+			*Passed test: write-through , write-around for config 0
+			*Passed test: write-through , write-around for config 0
+			*Passed test: write-through , write-around for config 0
+		
+Total: 80.0 / 80
+
+Final Score: 80.0 / 80
