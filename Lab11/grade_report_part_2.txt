@@ -1,5 +1,5 @@
 Grades for version committed on time
-	pipelined_machine: 80 / 80
+	pipelined_machine: 80.0 / 80
 			*Passed test: no_hazards_or_flushing register 0
 			*Passed test: no_hazards_or_flushing register 1
 			*Passed test: no_hazards_or_flushing register 2
@@ -15,6 +15,11 @@ Grades for version committed on time
 			*Passed test: no_hazards_or_flushing register 12
 			*Passed test: no_hazards_or_flushing register 13
 			*Passed test: no_hazards_or_flushing register 14
+			*Passed test: no_hazards_or_flushing register 268500992
+			*Passed test: no_hazards_or_flushing register 268500996
+			*Passed test: no_hazards_or_flushing register 268501000
+			*Passed test: no_hazards_or_flushing register 268501004
+			*Passed test: no_hazards_or_flushing register 268501008
 			*Passed test: forwarding register 0
 			*Passed test: forwarding register 1
 			*Passed test: forwarding register 2
@@ -29,6 +34,11 @@ Grades for version committed on time
 			*Passed test: forwarding register 11
 			*Passed test: forwarding register 12
 			*Passed test: forwarding register 13
+			*Passed test: forwarding register 268500992
+			*Passed test: forwarding register 268500996
+			*Passed test: forwarding register 268501000
+			*Passed test: forwarding register 268501004
+			*Passed test: forwarding register 268501008
 			*Passed test: flushing register 0
 			*Passed test: flushing register 1
 			*Passed test: flushing register 2
@@ -45,6 +55,11 @@ Grades for version committed on time
 			*Passed test: flushing register 13
 			*Passed test: flushing register 14
 			*Passed test: flushing register 15
+			*Passed test: flushing register 268500992
+			*Passed test: flushing register 268500996
+			*Passed test: flushing register 268501000
+			*Passed test: flushing register 268501004
+			*Passed test: flushing register 268501008
 			*Passed test: stalling register 0
 			*Passed test: stalling register 1
 			*Passed test: stalling register 2
@@ -56,6 +71,11 @@ Grades for version committed on time
 			*Passed test: stalling register 8
 			*Passed test: stalling register 9
 			*Passed test: stalling register 10
+			*Passed test: stalling register 268500992
+			*Passed test: stalling register 268500996
+			*Passed test: stalling register 268501000
+			*Passed test: stalling register 268501004
+			*Passed test: stalling register 268501008
 			*Passed test: pipeline_test register 0
 			*Passed test: pipeline_test register 1
 			*Passed test: pipeline_test register 2
@@ -74,6 +94,11 @@ Grades for version committed on time
 			*Passed test: pipeline_test register 15
 			*Passed test: pipeline_test register 16
 			*Passed test: pipeline_test register 17
+			*Passed test: pipeline_test register 268500992
+			*Passed test: pipeline_test register 268500996
+			*Passed test: pipeline_test register 268501000
+			*Passed test: pipeline_test register 268501004
+			*Passed test: pipeline_test register 268501008
 		
 Total: 80.0 / 80
 
