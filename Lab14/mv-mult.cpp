@@ -12,14 +12,14 @@
 // with the vector, and doing this for each row in the matrix
 
 // vectorize the below code using SIMD intrinsics
-float *
-mv_mult_vector(float mat[SIZE][SIZE], float vec[SIZE]) {
+float *mv_mult_vector(float mat[SIZE][SIZE], float vec[SIZE]) {
     static float ret[SIZE];
 
     for (int i = 0; i < SIZE; i ++) {
         ret[i] = 0;
         for (int j = 0; j < SIZE; j ++) {
-            ret[i] += mat[i][j] * vec[j];
+            // ret[i] += mat[i][j] * vec[j];
+			ret[i] += _mm_mul_ps(mat[i][j], vec[j]);
         }
     }
 
