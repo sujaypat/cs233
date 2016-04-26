@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include "mv-mult.h"
+#include <iostream>
+using namespace std;
 
 // this scary-looking thing is a function pointer -
 // the C equivalent of C++ function objects (functors).
 // Google it if you're interested
 typedef float *(*mv_mult_fn)(float mat[SIZE][SIZE], float vec[SIZE]);
 
-float *
-mv_mult_scalar(float mat[SIZE][SIZE], float vec[SIZE]) {
+float *mv_mult_scalar(float mat[SIZE][SIZE], float vec[SIZE]) {
     static float ret[SIZE];
 
     for (int i = 0; i < SIZE; i ++) {
@@ -22,8 +23,7 @@ mv_mult_scalar(float mat[SIZE][SIZE], float vec[SIZE]) {
     return ret;
 }
 
-float *
-time_mult(float mat[SIZE][SIZE], float vec[SIZE], mv_mult_fn mv_mult, const char *version) {
+float *time_mult(float mat[SIZE][SIZE], float vec[SIZE], mv_mult_fn mv_mult, const char *version) {
     struct timeval start, end;
     float *ret;
 
@@ -38,8 +38,7 @@ time_mult(float mat[SIZE][SIZE], float vec[SIZE], mv_mult_fn mv_mult, const char
     return ret;
 }
 
-int
-main(int argc, char **argv) {
+int main(int argc, char **argv) {
     static float mat[SIZE][SIZE];
     static float vec[SIZE];
 
@@ -51,9 +50,15 @@ main(int argc, char **argv) {
 
     // variable names commented to prevent unused variable warnings
     // uncomment if you add comparison code
-    /*float *scalar_ret = */ time_mult(mat, vec, mv_mult_scalar, "Scalar");
-    /*float *vector_ret = */ time_mult(mat, vec, mv_mult_vector, "Vector");
+    float *scalar_ret = time_mult(mat, vec, mv_mult_scalar, "Scalar");
+    float *vector_ret = time_mult(mat, vec, mv_mult_vector, "Vector");
 
+	for(int i = 0; i < SIZE; i++){
+		float ebola = scalar_ret[i] - vector_ret[i];
+		if(ebola < 0) ebola *= -1;
+		if(ebola > 0.001) cout << "lmao this is ebola" << endl;
+	}
+	cout << "oh" << endl;
     // you probably want to add code here to compare the scalar and vector results
     // remember that floating point numbers should be compared using a tolerance
     // instead of direct equality - 0.001 works well for the magnitudes involved here
