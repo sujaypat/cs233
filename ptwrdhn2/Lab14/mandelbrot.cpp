@@ -13,7 +13,7 @@ int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
     float x1, y1, x2, y2;
 
     for (int i = 0; i < SIZE; i ++) {
-        x1 = y1 = 0.0;
+        x1 = y1 = _mm;
 
         // Run M_ITER iterations
         for (int j = 0; j < M_ITER; j ++) {

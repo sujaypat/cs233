@@ -1,7 +1,7 @@
+// A, D
 #include "declarations.h"
 
-void
-t6(float *A, float *D) {
+void t6(float *A, float *D) {
     for (int nl = 0; nl < ntimes; nl ++) {
         A[0] = 0;
         for (int i = 0; i < (LEN6 - 1); i ++) {
