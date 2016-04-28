@@ -8,8 +8,7 @@
 // that the function will diverge to infinity.
 
 // vectorize the code below using SIMD intrinsics
-int *
-cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
+int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
     static int ret[SIZE];
     float x1, y1, x2, y2;
 
@@ -34,7 +33,7 @@ cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
             y1 = y2;
         }
 
-        // caculate the magnitude of the result;
+        // calculate the magnitude of the result;
         // we could take the square root, but we instead just
         // compare squares
         ret[i] = ((x2 * x2) + (y2 * y2)) < (M_MAG * M_MAG);
