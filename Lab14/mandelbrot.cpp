@@ -40,7 +40,7 @@ int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
         // we could take the square root, but we instead just
         // compare squares
         // ret[i] = ((x2 * x2) + (y2 * y2)) < (M_MAG * M_MAG);
-		ret[i] = _mm_add_ps(_mm_mul_ps(x2, x2), _mm_mul_ps(y2, y2)) < _mm_mul_ps(M_MAG, M_MAG)
+		ret[i] = _mm_add_ps(_mm_mul_ps(x2, x2), _mm_mul_ps(y2, y2)) < _mm_mul_ps(M_MAG, M_MAG);
     }
 
     return ret;
