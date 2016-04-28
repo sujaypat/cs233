@@ -15,7 +15,7 @@ int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
 	__m128 fx1, fx2, fy1, fy2, xi, yi, xy, x22, y22, ay, yl, mao, three;
 	three = _mm_set1_ps(3.0);
 
-    for (int i = 0; i < SIZE; i ++) {
+    for (int i = 0; i < SIZE; i += 4) {
         // x1 = y1 = 0.0;
 		fx1 = _mm_set1_ps(0.0);
 		fy1 = _mm_set1_ps(0.0);
@@ -39,12 +39,12 @@ int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
 
             // Calculate the imaginary portion of (x1 + (y1*i))^3 + (x + (y*i))
             // y2 = y1 * (3 * x1_squared - y1_squared) + y[i];
-			y22 = _mm_add_ps(_mm_mul_ps(fy1, _mm_sub_ps(_mm_mul_ps(three, fx2)), fy2), yi);
+			y22 = _mm_add_ps(_mm_mul_ps(fy1, _mm_sub_ps(_mm_mul_ps(three, fx2), fy2)), yi);
 
             // Use the resulting complex number as the input for the next
             // iteration
-            fx1 = fx2;
-            fy1 = fy2;
+            fx1 = x22;
+            fy1 = y22;
         }
 
         // calculate the magnitude of the result;
@@ -55,8 +55,8 @@ int *cubic_mandelbrot_vector(float x[SIZE], float y[SIZE]) {
 		yl = _mm_mul_ps(y22, y22);
 		ay = _mm_add_ps(ay, yl);
 		mao = _mm_set1_ps(M_MAG * M_MAG);
-		ay = _mm_cmplt_ps(x22, mao);
-		_mm_storeu_ps(ebola, x22);
+		ay = _mm_cmplt_ps(ay, mao);
+		_mm_storeu_ps(ebola, ay);
 		ret[i] = (int)ebola[0];
 		ret[i + 1] = (int)ebola[1];
 		ret[i + 2] = (int)ebola[2];
