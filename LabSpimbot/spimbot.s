@@ -81,7 +81,7 @@ main_loop:
 	# go wild
 	# the world is your oyster :)
 
-	la		$t0, 10
+	li		$t0, 10
 	sw  		$t0, VELOCITY
 
 	la		$t0, cloud_data
@@ -154,6 +154,8 @@ change_direction:
 dir_loop:
 	lw	$s0, BOT_X		# spimbot x loc
 	lw	$s1, BOT_Y		# spimbot y loc
+	li	$t0, 10
+	sw	$t0, VELOCITY
 	sub	$t0, $s0, $s2
 	sub	$t1, $s1, $s3
 	bgt	$t0, 1, dir_loop
@@ -276,9 +278,6 @@ interrupt_dispatch:			# Interrupt:
 	and	$a0, $k0, CLOUD_CHANGE_STATUS_INT_MASK	# is there a cloud status interrupt?
 	bne	$a0, 0, cloud_interrupt
 
-	and	$a0, $k0, REQUEST_PUZZLE_INT_MASK	# is there a cloud status interrupt?
-	bne	$a0, 0, puzzle_interrupt
-
 	and	$a0, $k0, BONK_MASK
 	bne	$a0, 0, bonk_interrupt
 
@@ -291,7 +290,9 @@ interrupt_dispatch:			# Interrupt:
 	j	done
 
 bonk_interrupt:
-	sw	$a1, BONK_ACK
+		sw	$a1, BONK_ACK
+	lw	$s0, BOT_X
+	lw	$s1, BOT_Y
 	bgt	$s1, 150, lowerhalf
 	bgt	$s0, 150, topright
 	j	topleft
@@ -305,10 +306,10 @@ topright:
 	li	$t0, 135
 	j	bonk_end
 lowerleft:
-	li	$t0, -45
+	li	$t0, -10
 	j	bonk_end
 lowerright:
-	li	$t0, -135
+	li	$t0, 190
 bonk_end:
 	sw	$t0, ANGLE
 	li	$t0, 1
@@ -316,6 +317,7 @@ bonk_end:
 	li	$t0, 10
 	sw	$t0, VELOCITY
 	j	done
+
 
 plant_interrupt:
 	sw	$0, WATER_VALVE
@@ -356,6 +358,8 @@ left:
 	li	$t0, 1
 	sw	$t0, ANGLE_CONTROL
 	j	go
+
+
 
 puzzle_interrupt:
 	sub 		$sp, $sp, 28

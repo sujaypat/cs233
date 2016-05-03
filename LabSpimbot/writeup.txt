@@ -1,6 +1,6 @@
-Our strategy was to assign a cloud to each of the first 3 plants and then keep cycling the clouds between the currently visible plants. The failsafe to Spimbot getting stuck in a corner was to check if it had not changed its location in 8192 cycles or had received a bonk interrupt, and then resetting it back to the main loop logic. We copied the Lab7 and Lab8 code into the puzzle interrupt to solve the puzzle.
+Our strategy was to assign a cloud to each of the first 3 plants and then keep cycling the clouds between the currently visible plants. The failsafe to Spimbot getting stuck in a corner was to use a bonk interrupt and the current location to make it move to the center to get unstuck. To avoid moving the cloud after it is in position, we go straight up through the cloud, ignoring the interrupt in this case. 
 
-We are a peace-loving people, and so we do not intentionally sabotage or steal clouds from the enemy Spimbot. We did not attempt to use any exploits in the Spimbot source code. Apparently, we're also not very creative, so we used the most straightforward and efficient possible way to maximize plants watered using just clouds.
+We do not intentionally sabotage or steal clouds from the enemy Spimbot. We did not attempt to use any exploits in the Spimbot source code. Apparently, we're also not very creative, so we used the most straightforward and efficient possible way to maximize plants watered using just clouds.
 
 
 some ascii art:
