@@ -1,0 +1,64 @@
+Total: 43.1/100
+
+Testing add: 3.75/3.75
+Register 5 had correct value 0x00000014
+Register 6 had correct value 0xfffffffe
+No registers or memory were unexpectedly modified
+
+Testing sub: 3.75/3.75
+Register 5 had correct value 0xfffffff3
+Register 6 had correct value 0x0000001f
+No registers or memory were unexpectedly modified
+
+Testing and: 3.75/3.75
+Register 5 had correct value 0x000b0d0f
+Register 6 had correct value 0x00a0c0e0
+No registers or memory were unexpectedly modified
+
+Testing or: 3.75/3.75
+Register 10 had correct value 0xfafef0d1
+Register 11 had correct value 0xfadeb0fd
+No registers or memory were unexpectedly modified
+
+Testing lw: 3.75/3.75
+Register 2 had correct value 0x12345678
+Register 3 had correct value 0x87654321
+No registers or memory were unexpectedly modified
+
+Testing sw: 3.75/3.75
+Address 0x10010000 had correct value 0x0000002a
+Address 0x1001000c had correct value 0xcafebabe
+No registers or memory were unexpectedly modified
+
+Testing slt: 3.75/3.75
+Register 3 had correct value 0x00000001
+Register 4 had correct value 0x00000000
+Register 5 had correct value 0x00000000
+Register 6 had correct value 0x00000001
+Register 7 had correct value 0x00000000
+Register 8 had correct value 0x00000000
+Register 9 had correct value 0x00000001
+No registers or memory were unexpectedly modified
+
+Testing taken beq: 1.875/1.875
+PC sequence 0x00400000, 0x00400008 was correct
+No registers or memory were unexpectedly modified
+
+Testing not taken beq: 1.875/1.875
+PC sequence 0x00400000, 0x00400004 was correct
+No registers or memory were unexpectedly modified
+
+Testing loopr with initial count of one: 2.72/28.0
+Register 2 should have been 0xffffffff but was 0x00000000
+PC sequence 0x00400000, 0x01000000, 0x01000004 was incorrect
+Register 3 was unexpectedly modified from 0x00400000 to 0xffffffff
+
+Testing loopr with multiple iterations: 2.72/28.0
+Register 2 should have been 0xffffffff but was 0x00000000
+PC sequence 0x00400000, 0x01000000, 0x01000000, 0x01000000, 0x01000004 was incorrect
+Register 3 was unexpectedly modified from 0x00400000 to 0xffffffff
+
+Testing loopr with initial negative count: 7.66/14.0
+Register 2 should have been 0xfffffffe but was 0xffffffff
+PC sequence 0x00400000, 0x00400004 was correct
+Register 3 was unexpectedly modified from 0x00400000 to 0xfffffffe
