@@ -1,15 +1,15 @@
 Grades for version committed on time
-	mandelbrot: 0 / 50
-		Failed to execute student code
+	mandelbrot: 50 / 50
+			*Passed test: Achieved 2x speedup
 		
 	compiler_vectorization: 25.0 / 30
 			*Passed test: t1: Result accurate and achieved speedup
-		Failed to execute student code
+			*Failed test: t2: Did not achieve speedup
 			*Passed test: t3: Result accurate and correctly did not optimize
 			*Passed test: t4: Result accurate and achieved speedup
 			*Passed test: t5: Result accurate and achieved speedup
 			*Passed test: t6: Result accurate and correctly did not optimize
 		
-Total: 25.0 / 80
+Total: 75.0 / 80
 
-Final Score: 25.0 / 80
+Final Score: 75.0 / 80
