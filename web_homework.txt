@@ -7,4 +7,8 @@
  100/100  Homework 6: Finite State Machines
   50/50   Homework 7: Medium Scale Integration
   30/30   Homework 9: The Arithmetic Machine
- 640/640  Total
+  50/50   Homework 10: The Full Machine
+  50/50   Homework 11: Pointers and Structures
+  50/50   Homework 12: Performance & Pipelining
+ 100/100  Homework 13: Caches
+ 890/890  Total
