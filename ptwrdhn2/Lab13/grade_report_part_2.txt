@@ -1,7 +1,11 @@
 Grades for version committed on time
-	filter: 0 / 80
-		Failed to execute student code
+	filter: 26.67 / 80
+			*Passed test: prefetch
+			*Failed test: fusion
+				*Your output: did not match
+			*Failed test: all
+				*Your output: did not match
 		
-Total: 0.0 / 80
+Total: 26.67 / 80
 
-Final Score: 0.0 / 80
+Final Score: 26.67 / 80
